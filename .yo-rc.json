@@ -1,0 +1,53 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.balbaursak.webapp",
+      "nativeLanguage": "ru"
+    },
+    "jhipsterVersion": "6.10.3",
+    "applicationType": "monolith",
+    "baseName": "balbaursak",
+    "packageName": "com.balbaursak.webapp",
+    "packageFolder": "com/balbaursak/webapp",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": "spring-websocket",
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "OGVhZjU0NTA5NThmZmU1ZGM3MTAxOWYwNmE3MDg3NjNjZGYzZWUzMDc1NDM0ZTg2YmM2ZWYyODA3MjIxZTU3OGI2MmE3MjhhZWQyNjY2Mzg0NzhkMzc2NGQ1ZjRiZDQ3ODIwYTVmNWI1YTE3ZDQ5N2IwZjgzMTFhN2QxZDI3ZDU=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "vue",
+    "clientTheme": "lux",
+    "clientThemeVariant": "primary",
+    "creationTimestamp": 1601570096845,
+    "testFrameworks": ["gatling"],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [
+      {
+        "name": "generator-jhipster-vuejs",
+        "version": "1.9.2"
+      }
+    ],
+    "enableTranslation": true,
+    "nativeLanguage": "ru",
+    "languages": ["ru", "en"],
+    "blueprints": [
+      {
+        "name": "generator-jhipster-vuejs",
+        "version": "1.9.2"
+      }
+    ]
+  }
+}
