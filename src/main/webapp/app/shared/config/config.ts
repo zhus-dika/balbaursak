@@ -5,6 +5,7 @@ import { setupAxiosInterceptors } from '@/shared/config/axios-interceptor';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons/faArrowLeft';
+import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons/faCartArrowDown';
 import { faAsterisk } from '@fortawesome/free-solid-svg-icons/faAsterisk';
 import { faBan } from '@fortawesome/free-solid-svg-icons/faBan';
 import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
@@ -47,6 +48,7 @@ import Vue2Filters from 'vue2-filters';
 import * as filters from '@/shared/date/filters';
 import { accountStore } from '@/shared/config/store/account-store';
 import { alertStore } from '@/shared/config/store/alert-store';
+import { bucketStore } from '@/shared/config/store/bucket-store';
 import { translationStore } from '@/shared/config/store/translation-store';
 
 const dateTimeFormats = {
@@ -115,6 +117,7 @@ export function initFortAwesome(vue) {
   library.add(
     faArrowLeft,
     faAsterisk,
+    faCartArrowDown,
     faBan,
     faBars,
     faBell,
@@ -167,6 +170,7 @@ export function initVueXStore(vue) {
       accountStore,
       alertStore,
       translationStore,
+      bucketStore
     },
   });
 }

@@ -1,0 +1,67 @@
+<template>
+    <div>
+        <h2 id="page-heading">
+            <span v-text="$t('balbaursakApp.requestpoint.home.title')" id="requestpoint-heading">Requestpoints</span>
+        </h2>
+        <b-alert :show="dismissCountDown"
+            dismissible
+            :variant="alertType"
+            @dismissed="dismissCountDown=0"
+            @dismiss-count-down="countDownChanged">
+            {{alertMessage}}
+        </b-alert>
+        <br/>
+        <div class="alert alert-warning" v-if="requestpoints && requestpoints.length === 0">
+            <span v-text="$t('balbaursakApp.requestpoint.home.notFound')">No requestpoints found</span>
+        </div>
+        <div class="table-responsive" v-if="requestpoints && requestpoints.length > 0">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th v-on:click="changeOrder('id')"><span v-text="$t('global.field.id')">ID</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'id'"></jhi-sort-indicator></th>
+                    <th v-on:click="changeOrder('quantity')"><span v-text="$t('balbaursakApp.requestpoint.quantity')">Quantity</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'quantity'"></jhi-sort-indicator></th>
+                    <th v-on:click="changeOrder('total')"><span v-text="$t('balbaursakApp.requestpoint.total')">Total</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'total'"></jhi-sort-indicator></th>
+                    <th v-on:click="changeOrder('request.id')"><span v-text="$t('balbaursakApp.requestpoint.request')">Request</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'request.id'"></jhi-sort-indicator></th>
+                    <th v-on:click="changeOrder('produce.name')"><span v-text="$t('balbaursakApp.requestpoint.produce')">Produce</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'produce.name'"></jhi-sort-indicator></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="requestpoint in requestpoints"
+                    :key="requestpoint.id">
+                    <td>
+                        <router-link :to="{name: 'RequestpointView', params: {requestpointId: requestpoint.id}}">{{requestpoint.id}}</router-link>
+                    </td>
+                    <td>{{requestpoint.quantity}}</td>
+                    <td>{{requestpoint.total}}</td>
+                    <td>
+                        <div v-if="requestpoint.request">
+                            <router-link :to="{name: 'RequestView', params: {requestId: requestpoint.request.id}}">{{requestpoint.request.id}}</router-link>
+                        </div>
+                    </td>
+                    <td>
+                        <div v-if="requestpoint.produce">
+                            <router-link :to="{name: 'ProduceView', params: {produceId: requestpoint.produce.id}}">{{requestpoint.produce.name}}</router-link>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <router-link :to="{name: 'RequestpointView', params: {requestpointId: requestpoint.id}}" tag="button" class="btn btn-info btn-sm details">
+                                <font-awesome-icon icon="eye"></font-awesome-icon>
+                                <span class="d-none d-md-inline" v-text="$t('entity.action.view')">View</span>
+                            </router-link>
+                            <router-link :to="{name: 'RequestpointEdit', params: {requestpointId: requestpoint.id}}"  tag="button" class="btn btn-primary btn-sm edit">
+                                <font-awesome-icon icon="pencil-alt"></font-awesome-icon>
+                                <span class="d-none d-md-inline" v-text="$t('entity.action.edit')">Edit</span>
+                            </router-link>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</template>
+
+<script lang="ts" src="./requestpoint.component.ts">
+</script>

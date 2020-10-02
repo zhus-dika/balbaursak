@@ -1,20 +1,20 @@
 <template>
-    <b-navbar toggleable="md" type="dark" class="bg-primary">
+    <b-navbar toggleable="md" type="light" class="bg-light">
         <b-navbar-brand class="logo" b-link to="/">
             <span class="logo-img"></span>
             <span v-text="$t('global.title')" class="navbar-title">balbaursak</span> <span class="navbar-version">{{version}}</span>
-        </b-navbar-brand>      
-        <b-navbar-toggle 
-        right 
-        class="jh-navbar-toggler d-lg-none" 
-        href="javascript:void(0);"  
-        data-toggle="collapse" 
-        target="header-tabs" 
-        aria-expanded="false" 
-        aria-label="Toggle navigation">
+        </b-navbar-brand>
+        <b-navbar-toggle
+            right
+            class="jh-navbar-toggler d-lg-none"
+            href="javascript:void(0);"
+            data-toggle="collapse"
+            target="header-tabs"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
             <font-awesome-icon icon="bars" />
         </b-navbar-toggle>
-           
+
         <b-collapse is-nav id="header-tabs">
             <b-navbar-nav class="ml-auto">
                 <b-nav-item to="/" exact>
@@ -32,6 +32,14 @@
                         <font-awesome-icon icon="th-list" />
                         <span v-text="$t('global.menu.entities.main')">Entities</span>
                     </span>
+                    <b-dropdown-item to="/produce">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.produce')">Produce</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/category">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.category')">Category</span>
+                    </b-dropdown-item>
                     <b-dropdown-item to="/feedback">
                         <font-awesome-icon icon="asterisk" />
                         <span v-text="$t('global.menu.entities.feedback')">Feedback</span>
@@ -44,21 +52,13 @@
                         <font-awesome-icon icon="asterisk" />
                         <span v-text="$t('global.menu.entities.purchase')">Purchase</span>
                     </b-dropdown-item>
-                    <b-dropdown-item to="/produce">
-                        <font-awesome-icon icon="asterisk" />
-                        <span v-text="$t('global.menu.entities.produce')">Produce</span>
-                    </b-dropdown-item>
-                    <b-dropdown-item to="/requestpoint">
-                        <font-awesome-icon icon="asterisk" />
-                        <span v-text="$t('global.menu.entities.requestpoint')">Requestpoint</span>
-                    </b-dropdown-item>
                     <b-dropdown-item to="/request">
                         <font-awesome-icon icon="asterisk" />
                         <span v-text="$t('global.menu.entities.request')">Request</span>
                     </b-dropdown-item>
-                    <b-dropdown-item to="/category">
+                    <b-dropdown-item to="/requestpoint">
                         <font-awesome-icon icon="asterisk" />
-                        <span v-text="$t('global.menu.entities.category')">Category</span>
+                        <span v-text="$t('global.menu.entities.requestpoint')">Requestpoint</span>
                     </b-dropdown-item>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </b-nav-item-dropdown>
@@ -105,6 +105,10 @@
                         <font-awesome-icon icon="book" />
                         <span v-text="$t('global.menu.admin.apidocs')">API</span>
                     </b-dropdown-item>
+                    <b-dropdown-item v-if="!inProduction"  href='./h2-console' target="_tab">
+                        <font-awesome-icon icon="hdd" />
+                        <span v-text="$t('global.menu.admin.database')">Database</span>
+                    </b-dropdown-item>
                 </b-nav-item-dropdown>
                 <b-nav-item-dropdown id="languagesnavBarDropdown" right v-if="languages && Object.keys(languages).length > 1">
                     <span slot="button-content">
@@ -112,7 +116,7 @@
                         <span v-text="$t('global.menu.language')">Language</span>
                     </span>
                     <b-dropdown-item v-for="(value, key) in languages" :key="`lang-${key}`" v-on:click="changeLanguage(key);"
-                        :class="{ active: isActiveLanguage(key)}">
+                                     :class="{ active: isActiveLanguage(key)}">
                         {{value.name}}
                     </b-dropdown-item>
                 </b-nav-item-dropdown>
@@ -150,6 +154,17 @@
                         <span v-text="$t('global.menu.account.register')">Register</span>
                     </b-dropdown-item>
                 </b-nav-item-dropdown>
+                <b-nav-item to="/bucket" exact>
+                    <span class="bucket">
+                        <div class="bucket__items-wrapper">
+                            <div class="bucket__items-inner">
+                                <div class="bucket__items">{{bucket.length}}</div>
+                            </div>
+                        </div>
+                        <font-awesome-icon icon="cart-arrow-down" />
+                        <span v-text="$t('global.menu.cart')">Cart</span>
+                    </span>
+                </b-nav-item>
             </b-navbar-nav>
         </b-collapse>
     </b-navbar>
@@ -163,48 +178,69 @@
 /* ==========================================================================
     Navbar
     ========================================================================== */
+.bucket {
+    position: relative;
+}
+.bucket__items-wrapper {
+    position: absolute;
+    bottom: 89%;
+}
+.bucket__items-inner {
+    position: relative;
+    background: #7ec699;
+    border-radius: 50%;
+    font-size: 10pt;
+    width: 20px;
+    height: 20px;
+}
+.bucket__items {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
 .navbar-version {
-  font-size: 10px;
+    font-size: 10px;
 }
 
 
 @media screen and (min-width: 768px) {
-  .jh-navbar-toggler {
-    display: none;
-  }
+    .jh-navbar-toggler {
+        display: none;
+    }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1150px) {
-  span span{
-    display:none;
-  }
+    span span{
+        display:none;
+    }
 }
 
 .navbar-title {
-  display: inline-block;
-  vertical-align: middle;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 /* ==========================================================================
     Logo styles
     ========================================================================== */
 .navbar-brand.logo {
-  padding: 5px 15px;
+    padding: 5px 15px;
 }
 
 .logo .logo-img {
-  height: 45px;
-  display: inline-block;
-  vertical-align: middle;
-  width: 70px;
+    height: 45px;
+    display: inline-block;
+    vertical-align: middle;
+    width: 70px;
 }
 
 .logo-img {
-  height: 100%;
-  background: url("../../../content/images/logo-jhipster.png") no-repeat center
+    height: 100%;
+    background: url("../../../content/images/logo-jhipster.png") no-repeat center
     center;
-  background-size: contain;
-  width: 100%;
-  filter: drop-shadow(0 0 0.05rem white);
+    background-size: contain;
+    width: 100%;
+    filter: drop-shadow(0 0 0.05rem white);
 }
 </style>

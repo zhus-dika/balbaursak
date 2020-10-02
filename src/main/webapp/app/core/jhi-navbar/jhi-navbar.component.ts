@@ -18,8 +18,14 @@ export default class JhiNavbar extends Vue {
 
   created() {
     this.translationService().refreshTranslation(this.currentLanguage);
+    this.getItems();
   }
-
+  get bucket() {
+    return this.$store.getters.bucket;
+  }
+  public getItems() {
+    this.$store.commit('setAllFromStorage');
+  }
   public subIsActive(input) {
     const paths = Array.isArray(input) ? input : [input];
     return paths.some(path => {

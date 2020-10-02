@@ -7,8 +7,10 @@ Component.registerHooks([
 ]);
 import Router from 'vue-router';
 
-const Home = () => import('@/core/home/home.vue');
+const Home = () => import('@/main/produce/produce.vue');
 const Error = () => import('@/core/error/error.vue');
+const ProduceDetailsBucket = () => import('@/main/produce/produce-details.vue');
+const Bucket = () => import('@/main/request-points/requestpoint.vue');
 import account from '@/router/account.ts';
 import admin from '@/router/admin.ts';
 import entities from '@/router/entities.ts';
@@ -24,6 +26,16 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home
+    },
+    {
+      path: '/bucket',
+      name: 'Bucket',
+      component: Bucket
+    },
+    {
+      path: '/produce/:produceId/view',
+      name: 'ProduceDetailsBucket',
+      component: ProduceDetailsBucket
     },
     {
       path: '/forbidden',
