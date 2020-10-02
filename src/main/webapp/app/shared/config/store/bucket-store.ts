@@ -22,14 +22,20 @@ export const bucketStore: Module<any, any> = {
       state.bucket = values;
     },
     additem(state, item) {
-      state.bucket.push(item);
+      if (state.bucket.filter(ele => ele.key === item.key).length === 0) {
+        state.bucket.push(item);
+      } else {
+        state.bucket = state.bucket.map(ele => {
+          return (ele.key === item.key) ? item : ele;
+        });
+      }
     },
     removeitem(state, key) {
       state.bucket = state.bucket.filter(ele => ele.key !== key);
     },
     updateitem(state, item) {
       state.bucket = state.bucket.map(ele => {
-        return (ele.produceId === item.produceId) ? item : ele;
+        return (ele.key === item.key) ? item : ele;
       });
     },
   },

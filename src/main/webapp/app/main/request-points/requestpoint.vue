@@ -41,16 +41,12 @@
                     </td>
                     <td>
                         <div v-if="requestpoint.produce">
-                            <router-link :to="{name: 'ProduceView', params: {produceId: requestpoint.produce.id}}">{{requestpoint.produce.name}}</router-link>
+                            {{requestpoint.produce.name}}
                         </div>
                     </td>
                     <td class="text-right">
                         <div class="btn-group">
-                            <router-link :to="{name: 'RequestpointView', params: {requestpointId: requestpoint.id}}" tag="button" class="btn btn-info btn-sm details">
-                                <font-awesome-icon icon="eye"></font-awesome-icon>
-                                <span class="d-none d-md-inline" v-text="$t('entity.action.view')">View</span>
-                            </router-link>
-                            <router-link :to="{name: 'RequestpointEdit', params: {requestpointId: requestpoint.id}}"  tag="button" class="btn btn-primary btn-sm edit">
+                            <router-link :to="{name: 'ProduceDetailsBucket', params: {produceId: requestpoint.produce.id, currentQuantity: requestpoint.quantity}}"  tag="button" class="btn btn-primary btn-sm edit">
                                 <font-awesome-icon icon="pencil-alt"></font-awesome-icon>
                                 <span class="d-none d-md-inline" v-text="$t('entity.action.edit')">Edit</span>
                             </router-link>

@@ -16,9 +16,6 @@ export default class ProduceDetails extends mixins(JhiDataUtils) {
   public requestpoints: IRequestpoint[] = [];
   public isSaving = false;
   public quantity = 1;
-  created() {
-    this.quantity = parseInt(this.$route.params.currentQuantity, 10);
-  }
   beforeRouteEnter(to, from, next) {
     next(vm => {
       if (to.params.produceId) {

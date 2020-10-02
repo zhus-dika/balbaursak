@@ -10,6 +10,7 @@ import Router from 'vue-router';
 const Home = () => import('@/main/produce/produce.vue');
 const Error = () => import('@/core/error/error.vue');
 const ProduceDetailsBucket = () => import('@/main/produce/produce-details.vue');
+
 const Bucket = () => import('@/main/request-points/requestpoint.vue');
 import account from '@/router/account.ts';
 import admin from '@/router/admin.ts';
