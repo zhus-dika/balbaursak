@@ -54,12 +54,29 @@
                                 <font-awesome-icon icon="pencil-alt"></font-awesome-icon>
                                 <span class="d-none d-md-inline" v-text="$t('entity.action.edit')">Edit</span>
                             </router-link>
+                            <b-button v-on:click="prepareRemove(requestpoint)"
+                                      variant="danger"
+                                      class="btn btn-sm"
+                                      v-b-modal.removeEntity>
+                                <font-awesome-icon icon="times"></font-awesome-icon>
+                                <span class="d-none d-md-inline" v-text="$t('entity.action.delete')">Delete</span>
+                            </b-button>
                         </div>
                     </td>
                 </tr>
                 </tbody>
             </table>
         </div>
+        <b-modal ref="removeEntity" id="removeEntity" >
+            <span slot="modal-title"><span id="balbaursakApp.requestpoint.delete.question" v-text="$t('entity.delete.title')">Confirm delete operation</span></span>
+            <div class="modal-body">
+                <p id="jhi-delete-requestpoint-heading" v-text="$t('balbaursakApp.requestpoint.delete.question', {'id': removeId})">Are you sure you want to delete this Requestpoint?</p>
+            </div>
+            <div slot="modal-footer">
+                <button type="button" class="btn btn-secondary" v-text="$t('entity.action.cancel')" v-on:click="closeDialog()">Cancel</button>
+                <button type="button" class="btn btn-primary" id="jhi-confirm-delete-requestpoint" v-text="$t('entity.action.delete')" v-on:click="removeRequestpoint()">Delete</button>
+            </div>
+        </b-modal>
     </div>
 </template>
 

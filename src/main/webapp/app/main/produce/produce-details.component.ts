@@ -25,7 +25,7 @@ export default class ProduceDetails extends mixins(JhiDataUtils) {
   }
   public addToBucket() {
     this.isSaving = true;
-    localStorage.setItem(`requestPoint_${this.produce.id}`, JSON.stringify(this.quantity));
+    localStorage.setItem(`requestPoint_${this.produce.id}`, `${this.quantity}`);
     const item = {
       key: `requestPoint_${this.produce.id}`,
       val: this.quantity

@@ -34,7 +34,7 @@ export default class Requestpoint extends mixins(AlertMixin) {
       console.log(parseInt(ele.val, 10));
       console.log(this.produce);
       const requestPoint = {
-        id: idx,
+        id: idx + 1,
         quantity: parseInt(ele.val, 10),
         total: this.produce.price * parseInt(ele.val, 10),
         produce: this.produce
@@ -43,11 +43,28 @@ export default class Requestpoint extends mixins(AlertMixin) {
         });
     });
   }
+  public closeDialog(): void {
+    (<any>this.$refs.removeEntity).hide();
+  }
   public retrieveProduce(produceId) {
     this.produceService()
       .find(produceId)
       .then(res => {
         this.produce = res;
       });
+  }
+  public prepareRemove(instance: IRequestpoint): void {
+    this.removeId = instance.id;
+    if (<any>this.$refs.removeEntity) {
+      (<any>this.$refs.removeEntity).show();
+    }
+  }
+  public removeRequestpoint(): void {
+    const requestpoint = this.requestpoints.filter(ele => ele.id === this.removeId)[0];
+    this.requestpoints = this.requestpoints.filter(ele => ele.id !== this.removeId);
+    const key = `requestPoint_${requestpoint.produce.id}`;
+    localStorage.removeItem(key);
+    this.$store.commit('removeitem', key);
+    this.closeDialog();
   }
 }

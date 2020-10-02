@@ -15,7 +15,7 @@ export const bucketStore: Module<any, any> = {
         .map( key => {
           const object = {
             key: key,
-            val: localStorage[key]
+            val: parseInt(localStorage[key], 10)
           };
           return object;
         });
@@ -24,8 +24,8 @@ export const bucketStore: Module<any, any> = {
     additem(state, item) {
       state.bucket.push(item);
     },
-    removeitem(state, item) {
-      state.bucket = state.bucket.filter(ele => ele.produceId !== item.produceId);
+    removeitem(state, key) {
+      state.bucket = state.bucket.filter(ele => ele.key !== key);
     },
     updateitem(state, item) {
       state.bucket = state.bucket.map(ele => {
