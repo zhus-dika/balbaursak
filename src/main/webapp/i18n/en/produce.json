@@ -1,0 +1,30 @@
+{
+  "balbaursakApp": {
+    "produce": {
+      "home": {
+        "title": "Produces",
+        "createLabel": "Create a new Produce",
+        "createOrEditLabel": "Create or edit a Produce",
+        "notFound": "No Produces found"
+      },
+      "created": "A new Produce is created with identifier {{ param }}",
+      "updated": "A Produce is updated with identifier {{ param }}",
+      "deleted": "A Produce is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Produce {{ id }}?"
+      },
+      "detail": {
+        "title": "Produce"
+      },
+      "name": "Name",
+      "unit": "Unit",
+      "contains": "Contains",
+      "days": "Days",
+      "description": "Description",
+      "price": "Price",
+      "file": "File",
+      "category": "Category",
+      "feedbacks": "Feedbacks"
+    }
+  }
+}

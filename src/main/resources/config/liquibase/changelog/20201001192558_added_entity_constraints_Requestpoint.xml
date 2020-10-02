@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity Requestpoint.
+    -->
+    <changeSet id="20201001192558-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="produce_id"
+                                 baseTableName="requestpoint"
+                                 constraintName="fk_requestpoint_produce_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="produce"/>
+
+        <addForeignKeyConstraint baseColumnNames="request_id"
+                                 baseTableName="requestpoint"
+                                 constraintName="fk_requestpoint_request_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="request"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,25 @@
+{
+  "balbaursakApp": {
+    "requestpoint": {
+      "home": {
+        "title": "Requestpoints",
+        "createLabel": "Create a new Requestpoint",
+        "createOrEditLabel": "Create or edit a Requestpoint",
+        "notFound": "No Requestpoints found"
+      },
+      "created": "A new Requestpoint is created with identifier {{ param }}",
+      "updated": "A Requestpoint is updated with identifier {{ param }}",
+      "deleted": "A Requestpoint is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Requestpoint {{ id }}?"
+      },
+      "detail": {
+        "title": "Requestpoint"
+      },
+      "quantity": "Quantity",
+      "total": "Total",
+      "produce": "Produce",
+      "request": "Request"
+    }
+  }
+}

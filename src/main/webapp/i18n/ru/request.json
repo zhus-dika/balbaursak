@@ -1,0 +1,29 @@
+{
+  "balbaursakApp": {
+    "request": {
+      "home": {
+        "title": "Requests",
+        "createLabel": "Создать новый Request",
+        "createOrEditLabel": "Создать или отредактировать Request",
+        "notFound": "No Requests found"
+      },
+      "created": "Новый Request создан с идентификатором {{ param }}",
+      "updated": "Request обновлен с идентификатором {{ param }}",
+      "deleted": "Request удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Request {{ id }}?"
+      },
+      "detail": {
+        "title": "Request"
+      },
+      "created": "Created",
+      "customer": "Customer",
+      "phone": "Phone",
+      "total": "Total",
+      "complete": "Complete",
+      "sales": "Sales",
+      "address": "Address",
+      "requestpoints": "Requestpoints"
+    }
+  }
+}

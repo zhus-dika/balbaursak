@@ -7,6 +7,13 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Сущности",
+        "feedback": "Feedback",
+        "product": "Product",
+        "purchase": "Purchase",
+        "produce": "Produce",
+        "requestpoint": "Requestpoint",
+        "request": "Request",
+        "category": "Category",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

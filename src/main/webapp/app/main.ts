@@ -30,6 +30,13 @@ import ConfigurationService from '@/admin/configuration/configuration.service';
 import TrackerService from './admin/tracker/tracker.service';
 /* tslint:disable */
 
+import FeedbackService from '@/entities/feedback/feedback.service';
+import ProductService from '@/entities/product/product.service';
+import PurchaseService from '@/entities/purchase/purchase.service';
+import ProduceService from '@/entities/produce/produce.service';
+import RequestpointService from '@/entities/requestpoint/requestpoint.service';
+import RequestService from '@/entities/request/request.service';
+import CategoryService from '@/entities/category/category.service';
 // jhipster-needle-add-entity-service-to-main-import - JHipster will import entities services here
 
 /* tslint:enable */
@@ -94,6 +101,13 @@ new Vue({
     trackerService: () => trackerService,
     alertService: () => alertService,
     translationService: () => translationService,
+    feedbackService: () => new FeedbackService(),
+    productService: () => new ProductService(),
+    purchaseService: () => new PurchaseService(),
+    produceService: () => new ProduceService(),
+    requestpointService: () => new RequestpointService(),
+    requestService: () => new RequestService(),
+    categoryService: () => new CategoryService(),
     // jhipster-needle-add-entity-service-to-main - JHipster will import entities services here
     accountService: () => accountService,
   },

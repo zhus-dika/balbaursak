@@ -1,0 +1,26 @@
+{
+  "balbaursakApp": {
+    "feedback": {
+      "home": {
+        "title": "Feedbacks",
+        "createLabel": "Создать новый Feedback",
+        "createOrEditLabel": "Создать или отредактировать Feedback",
+        "notFound": "No Feedbacks found"
+      },
+      "created": "Новый Feedback создан с идентификатором {{ param }}",
+      "updated": "Feedback обновлен с идентификатором {{ param }}",
+      "deleted": "Feedback удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Feedback {{ id }}?"
+      },
+      "detail": {
+        "title": "Feedback"
+      },
+      "created": "Created",
+      "customer": "Customer",
+      "vote": "Vote",
+      "content": "Content",
+      "produce": "Produce"
+    }
+  }
+}

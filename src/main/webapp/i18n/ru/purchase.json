@@ -1,0 +1,26 @@
+{
+  "balbaursakApp": {
+    "purchase": {
+      "home": {
+        "title": "Purchases",
+        "createLabel": "Создать новый Purchase",
+        "createOrEditLabel": "Создать или отредактировать Purchase",
+        "notFound": "No Purchases found"
+      },
+      "created": "Новый Purchase создан с идентификатором {{ param }}",
+      "updated": "Purchase обновлен с идентификатором {{ param }}",
+      "deleted": "Purchase удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Purchase {{ id }}?"
+      },
+      "detail": {
+        "title": "Purchase"
+      },
+      "created": "Created",
+      "quantity": "Quantity",
+      "price": "Price",
+      "total": "Total",
+      "product": "Product"
+    }
+  }
+}
