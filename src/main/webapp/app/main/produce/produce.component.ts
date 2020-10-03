@@ -8,12 +8,15 @@ import AlertMixin from '@/shared/alert/alert.mixin';
 import JhiDataUtils from '@/shared/data/data-utils.service';
 
 import ProduceService from './produce.service';
+import { Category, ICategory } from '@/shared/model/category.model';
+import CategoryService from '@/entities/category/category.service';
 
 @Component({
   mixins: [Vue2Filters.mixin],
 })
 export default class Produce extends mixins(JhiDataUtils, AlertMixin) {
   @Inject('produceService') private produceService: () => ProduceService;
+  @Inject('categoryService') private categoryService: () => CategoryService;
   private removeId: number = null;
   public itemsPerPage = 5;
   public queryCount: number = null;
@@ -22,20 +25,24 @@ export default class Produce extends mixins(JhiDataUtils, AlertMixin) {
   public propOrder = 'id';
   public reverse = false;
   public totalItems = 0;
-
+  public category: ICategory = new Category();
   public produces: IProduce[] = [];
+  public categories: ICategory[] = [];
 
   public isFetching = false;
 
   public mounted(): void {
     this.retrieveAllProduces();
+    this.retrieveAllCategorys();
   }
 
   public clear(): void {
     this.page = 1;
     this.retrieveAllProduces();
   }
-
+  get filteredProduces() {
+    return (this.category.id ===  undefined) ? this.produces : this.produces.filter(ele => ele.category.id === this.category.id);
+  }
   public retrieveAllProduces(): void {
     this.isFetching = true;
 
@@ -58,7 +65,28 @@ export default class Produce extends mixins(JhiDataUtils, AlertMixin) {
         }
       );
   }
+  public retrieveAllCategorys(): void {
+    this.isFetching = true;
 
+    const paginationQuery = {
+      page: this.page - 1,
+      size: this.itemsPerPage,
+      sort: this.sort(),
+    };
+    this.categoryService()
+      .retrieve(paginationQuery)
+      .then(
+        res => {
+          this.categories = res.data;
+          this.totalItems = Number(res.headers['x-total-count']);
+          this.queryCount = this.totalItems;
+          this.isFetching = false;
+        },
+        err => {
+          this.isFetching = false;
+        }
+      );
+  }
   public prepareRemove(instance: IProduce): void {
     this.removeId = instance.id;
     if (<any>this.$refs.removeEntity) {

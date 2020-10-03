@@ -2,7 +2,7 @@
     <b-navbar toggleable="md" type="light" class="bg-light">
         <b-navbar-brand class="logo" b-link to="/">
             <span class="logo-img"></span>
-            <span v-text="$t('global.title')" class="navbar-title">balbaursak</span> <span class="navbar-version">{{version}}</span>
+            <span v-text="$t('global.title')" class="navbar-title">balbaursak</span> <span class="navbar-version">v1.0.0</span>
         </b-navbar-brand>
         <b-navbar-toggle
             right
@@ -242,5 +242,8 @@
     background-size: contain;
     width: 100%;
     filter: drop-shadow(0 0 0.05rem white);
+}
+.navbar {
+    background: black;
 }
 </style>

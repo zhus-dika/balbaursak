@@ -14,7 +14,14 @@
         <div class="alert alert-warning" v-if="!isFetching && produces && produces.length === 0">
             <span v-text="$t('balbaursakApp.produce.home.notFound')">No produces found</span>
         </div>
-        <div class="table-responsive" v-if="produces && produces.length > 0">
+        <div class="form-group">
+            <label class="form-control-label" v-text="$t('balbaursakApp.produce.category')" for="category">Category</label>
+            <select class="form-control" id="category" name="category" v-model="category" required>
+                <option v-if="!category" v-bind:value="null" selected></option>
+                <option :value="category && categoryOption.id === category.id ? category : categoryOption" v-for="categoryOption in categories" :key="categoryOption.id">{{categoryOption.name}}</option>
+            </select>
+        </div>
+        <div class="table-responsive" v-if="filteredProduces && filteredProduces.length > 0">
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -31,7 +38,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="produce in produces"
+                <tr v-for="produce in filteredProduces"
                     :key="produce.id">
                     <td>
                         <router-link :to="{name: 'ProduceView', params: {produceId: produce.id}}">{{produce.id}}</router-link>
