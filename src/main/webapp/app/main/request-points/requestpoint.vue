@@ -72,7 +72,7 @@
                 class="btn btn-info">
             <font-awesome-icon icon="arrow-left"></font-awesome-icon>&nbsp;<span v-text="$t('entity.action.back')"> Back</span>
         </button>
-        <router-link :to="{name: 'RequestSend'}"  tag="button" class="btn btn-primary edit">
+        <router-link :to="{name: 'RequestSend'}" :disabled="requestpoints.length === 0" tag="button" class="btn btn-primary edit">
             <font-awesome-icon icon="pencil-alt"></font-awesome-icon>
             <span class="d-none d-md-inline" v-text="$t('balbaursakApp.request.addbutton.create')">Send request</span>
         </router-link>

@@ -10,30 +10,9 @@
                                v-model="request.id" readonly />
                     </div>
                     <div class="form-group">
-                        <label class="form-control-label" v-text="$t('balbaursakApp.request.created')" for="request-created">Created</label>
-                        <b-input-group class="mb-3">
-                            <b-input-group-prepend>
-                                <b-form-datepicker
-                                    aria-controls="request-created"
-                                    v-model="$v.request.created.$model"
-                                    name="created"
-                                    class="form-control"
-                                    :locale="currentLanguage"
-                                    button-only
-                                    today-button
-                                    reset-button
-                                    close-button
-                                >
-                                </b-form-datepicker>
-                            </b-input-group-prepend>
-                            <b-form-input id="request-created" type="text" class="form-control" name="created"  :class="{'valid': !$v.request.created.$invalid, 'invalid': $v.request.created.$invalid }"
-                            v-model="$v.request.created.$model"  required />
-                        </b-input-group>
-                        <div v-if="$v.request.created.$anyDirty && $v.request.created.$invalid">
-                            <small class="form-text text-danger" v-if="!$v.request.created.required" v-text="$t('entity.validation.required')">
-                                This field is required.
-                            </small>
-                        </div>
+                        <label for="request-created" v-text="$t('balbaursakApp.request.created')">Created</label>
+                        <input type="text" class="form-control" id="request-created" name="request-created"
+                               v-model="request.created" readonly />
                     </div>
                     <div class="form-group">
                         <label class="form-control-label" v-text="$t('balbaursakApp.request.customer')" for="request-customer">Customer</label>
@@ -56,33 +35,14 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="form-control-label" v-text="$t('balbaursakApp.request.total')" for="request-total">Total</label>
-                        <input type="number" class="form-control" name="total" id="request-total"
-                            :class="{'valid': !$v.request.total.$invalid, 'invalid': $v.request.total.$invalid }" v-model.number="$v.request.total.$model"  required/>
-                        <div v-if="$v.request.total.$anyDirty && $v.request.total.$invalid">
-                            <small class="form-text text-danger" v-if="!$v.request.total.required" v-text="$t('entity.validation.required')">
-                                This field is required.
-                            </small>
-                            <small class="form-text text-danger" v-if="!$v.request.total.min" v-text="$t('entity.validation.min', {min: 0})">
-                                This field should be at least 0.
-                            </small>
-                            <small class="form-text text-danger" v-if="!$v.request.total.numeric" v-text="$t('entity.validation.number')">
-                                This field should be a number.
-                            </small>
-                        </div>
+                        <label for="request-total" v-text="$t('balbaursakApp.request.total')">Total</label>
+                        <input type="text" class="form-control" id="request-total" name="total"
+                               v-model="request.total" readonly />
                     </div>
                     <div class="form-group">
-                        <label class="form-control-label" v-text="$t('balbaursakApp.request.sales')" for="request-sales">Sales</label>
-                        <input type="number" class="form-control" name="sales" id="request-sales"
-                            :class="{'valid': !$v.request.sales.$invalid, 'invalid': $v.request.sales.$invalid }" v-model.number="$v.request.sales.$model" />
-                        <div v-if="$v.request.sales.$anyDirty && $v.request.sales.$invalid">
-                            <small class="form-text text-danger" v-if="!$v.request.sales.min" v-text="$t('entity.validation.min', {min: 0})">
-                                This field should be at least 0.
-                            </small>
-                            <small class="form-text text-danger" v-if="!$v.request.sales.numeric" v-text="$t('entity.validation.number')">
-                                This field should be a number.
-                            </small>
-                        </div>
+                        <label for="request-created" v-text="$t('balbaursakApp.request.sales')">Sales</label>
+                        <input type="text" class="form-control" id="request-sales" name="sales"
+                               v-model="request.sales" readonly />
                     </div>
                     <div class="form-group">
                         <label class="form-control-label" v-text="$t('balbaursakApp.request.address')" for="request-address">Address</label>

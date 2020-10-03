@@ -33,6 +33,15 @@ export const bucketStore: Module<any, any> = {
     removeitem(state, key) {
       state.bucket = state.bucket.filter(ele => ele.key !== key);
     },
+    removeall(state) {
+      state.bucket = [];
+      const search = 'requestPoint';
+      Object.keys(localStorage)
+        .filter( key => key.match(search) )
+        .forEach( key => {
+          localStorage.removeItem(key);
+        });
+    },
     updateitem(state, item) {
       state.bucket = state.bucket.map(ele => {
         return (ele.key === item.key) ? item : ele;
