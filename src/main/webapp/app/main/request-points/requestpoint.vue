@@ -21,7 +21,6 @@
                     <th v-on:click="changeOrder('id')"><span v-text="$t('global.field.id')">ID</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'id'"></jhi-sort-indicator></th>
                     <th v-on:click="changeOrder('quantity')"><span v-text="$t('balbaursakApp.requestpoint.quantity')">Quantity</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'quantity'"></jhi-sort-indicator></th>
                     <th v-on:click="changeOrder('total')"><span v-text="$t('balbaursakApp.requestpoint.total')">Total</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'total'"></jhi-sort-indicator></th>
-                    <th v-on:click="changeOrder('request.id')"><span v-text="$t('balbaursakApp.requestpoint.request')">Request</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'request.id'"></jhi-sort-indicator></th>
                     <th v-on:click="changeOrder('produce.name')"><span v-text="$t('balbaursakApp.requestpoint.produce')">Produce</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'produce.name'"></jhi-sort-indicator></th>
                     <th></th>
                 </tr>
@@ -34,11 +33,6 @@
                     </td>
                     <td>{{requestpoint.quantity}}</td>
                     <td>{{requestpoint.total}}</td>
-                    <td>
-                        <div v-if="requestpoint.request">
-                            <router-link :to="{name: 'RequestView', params: {requestId: requestpoint.request.id}}">{{requestpoint.request.id}}</router-link>
-                        </div>
-                    </td>
                     <td>
                         <div v-if="requestpoint.produce">
                             {{requestpoint.produce.name}}
@@ -73,6 +67,15 @@
                 <button type="button" class="btn btn-primary" id="jhi-confirm-delete-requestpoint" v-text="$t('entity.action.delete')" v-on:click="removeRequestpoint()">Delete</button>
             </div>
         </b-modal>
+        <button type="submit"
+                v-on:click.prevent="previousState()"
+                class="btn btn-info">
+            <font-awesome-icon icon="arrow-left"></font-awesome-icon>&nbsp;<span v-text="$t('entity.action.back')"> Back</span>
+        </button>
+        <router-link :to="{name: 'RequestSend'}"  tag="button" class="btn btn-primary edit">
+            <font-awesome-icon icon="pencil-alt"></font-awesome-icon>
+            <span class="d-none d-md-inline" v-text="$t('balbaursakApp.request.addbutton.create')">Send request</span>
+        </router-link>
     </div>
 </template>
 

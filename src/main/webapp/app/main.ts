@@ -29,7 +29,7 @@ import ConfigurationService from '@/admin/configuration/configuration.service';
 
 import TrackerService from './admin/tracker/tracker.service';
 /* tslint:disable */
-
+import VueTelInput from 'vue-tel-input';
 import FeedbackService from '@/entities/feedback/feedback.service';
 import ProductService from '@/entities/product/product.service';
 import PurchaseService from '@/entities/purchase/purchase.service';
@@ -45,6 +45,7 @@ config.initVueApp(Vue);
 config.initFortAwesome(Vue);
 bootstrapVueConfig.initBootstrapVue(Vue);
 Vue.use(Vue2Filters);
+Vue.use(VueTelInput);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('jhi-item-count', JhiItemCountComponent);
 Vue.component('jhi-sort-indicator', JhiSortIndicatorComponent);

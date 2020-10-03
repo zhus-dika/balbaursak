@@ -16,6 +16,9 @@
       "detail": {
         "title": "Request"
       },
+      "addbutton": {
+        "create": "Отправить заявку"
+      },
       "created": "Created",
       "customer": "Customer",
       "phone": "Phone",

@@ -60,11 +60,18 @@
                             </div>
                         </dd>
                         <dt>
-                            <span>Quantity</span>
+                            <span v-text="$t('balbaursakApp.requestpoint.quantity')">Quantity</span>
                         </dt>
                         <dd>
-                            <input type="number" min="1" v-model="quantity">
-                            </input>
+                            <div class="form-group">
+                                <input type="number" class="form-control" name="unit" id="produce-unit"
+                                       :class="{'valid': quantity, 'invalid': !quantity }" v-model="quantity" required/>
+                                <div v-if="!quantity">
+                                    <small class="form-text text-danger" v-if="!quantity" v-text="$t('entity.validation.required')">
+                                        This field is required.
+                                    </small>
+                                </div>
+                            </div>
                         </dd>
                     </dl>
                     <button type="submit"

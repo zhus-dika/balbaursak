@@ -10,12 +10,13 @@ import Router from 'vue-router';
 const Home = () => import('@/main/produce/produce.vue');
 const Error = () => import('@/core/error/error.vue');
 const ProduceDetailsBucket = () => import('@/main/produce/produce-details.vue');
-
+const RequestSend = () => import('@/main/request/request-update.vue');
 const Bucket = () => import('@/main/request-points/requestpoint.vue');
 import account from '@/router/account.ts';
 import admin from '@/router/admin.ts';
 import entities from '@/router/entities.ts';
 import pages from '@/router/pages.ts';
+import { Authority } from '@/shared/security/authority';
 
 Vue.use(Router);
 
@@ -32,6 +33,11 @@ export default new Router({
       path: '/bucket',
       name: 'Bucket',
       component: Bucket
+    },
+    {
+      path: '/request/send',
+      name: 'RequestSend',
+      component: RequestSend
     },
     {
       path: '/produce/:produceId/view',

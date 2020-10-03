@@ -6,6 +6,8 @@ import { IRequestpoint } from '@/shared/model/requestpoint.model';
 import AlertMixin from '@/shared/alert/alert.mixin';
 import ProduceService from '@/main/produce/produce.service';
 import { IProduce } from '@/shared/model/produce.model';
+import { IRequest } from '@/shared/model/request.model';
+
 
 @Component({
   mixins: [Vue2Filters.mixin],
@@ -18,6 +20,7 @@ export default class Requestpoint extends mixins(AlertMixin) {
   public propOrder = 'id';
   public totalItems = 0;
   public requestpoints: IRequestpoint[] = [];
+  public request: IRequest = {};
 
   public mounted(): void {
     this.retrieveAllRequestpoints();
@@ -31,8 +34,6 @@ export default class Requestpoint extends mixins(AlertMixin) {
         .find(produceId)
         .then(res => {
           this.produce = res;
-      console.log(parseInt(ele.val, 10));
-      console.log(this.produce);
       const requestPoint = {
         id: idx + 1,
         quantity: parseInt(ele.val, 10),
@@ -66,5 +67,11 @@ export default class Requestpoint extends mixins(AlertMixin) {
     localStorage.removeItem(key);
     this.$store.commit('removeitem', key);
     this.closeDialog();
+  }
+  public previousState() {
+    this.$router.go(-1);
+  }
+  sendRequest() {
+
   }
 }

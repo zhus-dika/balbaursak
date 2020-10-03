@@ -46,11 +46,10 @@
                         <a v-if="produce.file" v-on:click="openFile(produce.fileContentType, produce.file)">
                             <img v-bind:src="'data:' + produce.fileContentType + ';base64,' + produce.file" style="max-height: 30px;" alt="produce image"/>
                         </a>
-                        <span v-if="produce.file">{{produce.fileContentType}}, {{byteSize(produce.file)}}</span>
                     </td>
                     <td>
                         <div v-if="produce.category">
-                            <router-link :to="{name: 'CategoryView', params: {categoryId: produce.category.id}}">{{produce.category.id}}</router-link>
+                            {{produce.category.id}}
                         </div>
                     </td>
                     <td class="text-right">

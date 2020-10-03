@@ -17,6 +17,9 @@
         "title": "Request"
       },
       "created": "Created",
+      "addbutton": {
+        "create": "Send request"
+      },
       "customer": "Customer",
       "phone": "Phone",
       "total": "Total",

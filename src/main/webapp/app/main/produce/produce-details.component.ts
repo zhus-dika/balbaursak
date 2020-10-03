@@ -17,7 +17,9 @@ export default class ProduceDetails extends mixins(JhiDataUtils) {
   public isSaving = false;
   public quantity = 1;
   created() {
-    this.quantity = parseInt(this.$route.params.currentQuantity, 10);
+    if (this.$route.params.currentQuantity !== undefined) {
+      this.quantity = parseInt(this.$route.params.currentQuantity, 10);
+    }
   }
   beforeRouteEnter(to, from, next) {
     next(vm => {
@@ -27,16 +29,18 @@ export default class ProduceDetails extends mixins(JhiDataUtils) {
     });
   }
   public addToBucket() {
-    this.isSaving = true;
-    localStorage.setItem(`requestPoint_${this.produce.id}`, `${this.quantity}`);
-    const item = {
-      key: `requestPoint_${this.produce.id}`,
-      val: this.quantity
-    };
-    this.$store.commit('additem', item);
-    this.$router.go(-1);
-    const message = `Изделие ${this.produce.id} добавлено в корзину`;
-    this.alertService().showAlert(message, 'info');
+    if (this.quantity) {
+      this.isSaving = true;
+      localStorage.setItem(`requestPoint_${this.produce.id}`, `${this.quantity}`);
+      const item = {
+        key: `requestPoint_${this.produce.id}`,
+        val: this.quantity
+      };
+      this.$store.commit('additem', item);
+      this.$router.go(-1);
+      const message = `Изделие ${this.produce.id} добавлено в корзину`;
+      this.alertService().showAlert(message, 'info');
+    }
   }
   public retrieveProduce(produceId) {
     this.produceService()
