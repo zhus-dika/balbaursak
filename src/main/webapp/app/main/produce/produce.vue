@@ -49,7 +49,7 @@
                     </td>
                     <td>
                         <div v-if="produce.category">
-                            {{produce.category.id}}
+                            {{produce.category.name}}
                         </div>
                     </td>
                     <td class="text-right">

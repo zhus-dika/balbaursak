@@ -16,14 +16,14 @@
       "detail": {
         "title": "Request"
       },
-      "created": "Created",
+      "created": "Request sent",
       "addbutton": {
         "create": "Send request"
       },
-      "customer": "Customer",
+      "customer": "Customer name",
       "phone": "Phone",
       "total": "Total",
-      "complete": "Complete",
+      "complete": "Status",
       "sales": "Sales",
       "address": "Address",
       "requestpoints": "Requestpoints"

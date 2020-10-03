@@ -97,6 +97,13 @@ public class FeedbackResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
+    @GetMapping("/feedbacks/produce")
+    public ResponseEntity<List<Feedback>> getAllFeedbacks(Pageable pageable, Long produceId) {
+        log.debug("REST request to get a page of Feedbacks");
+        Page<Feedback> page = feedbackService.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
 
     /**
      * {@code GET  /feedbacks/:id} : get the "id" feedback.

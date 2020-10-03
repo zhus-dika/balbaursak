@@ -2,22 +2,22 @@
   "balbaursakApp": {
     "category": {
       "home": {
-        "title": "Categories",
-        "createLabel": "Создать новый Category",
-        "createOrEditLabel": "Создать или отредактировать Category",
+        "title": "Категории",
+        "createLabel": "Создать новую Категорию",
+        "createOrEditLabel": "Создать или отредактировать Категорию",
         "notFound": "No Categories found"
       },
-      "created": "Новый Category создан с идентификатором {{ param }}",
-      "updated": "Category обновлен с идентификатором {{ param }}",
-      "deleted": "Category удален с идентификатором {{ param }}",
+      "created": "Новая Категория создана с идентификатором {{ param }}",
+      "updated": "Категория обновлена с идентификатором {{ param }}",
+      "deleted": "Категория удалена с идентификатором {{ param }}",
       "delete": {
-        "question": "Вы уверены что хотите удалить Category {{ id }}?"
+        "question": "Вы уверены что хотите удалить Категорию {{ id }}?"
       },
       "detail": {
-        "title": "Category"
+        "title": "Категория"
       },
-      "name": "Name",
-      "produces": "Produces"
+      "name": "Название",
+      "produces": "Изделия"
     }
   }
 }

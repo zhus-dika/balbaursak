@@ -2,31 +2,31 @@
   "balbaursakApp": {
     "request": {
       "home": {
-        "title": "Requests",
-        "createLabel": "Создать новый Request",
-        "createOrEditLabel": "Создать или отредактировать Request",
-        "notFound": "No Requests found"
+        "title": "Заявки",
+        "createLabel": "Создать новую Заявку",
+        "createOrEditLabel": "Создать или отредактировать Заявку",
+        "notFound": "Список заявок пуст"
       },
-      "created": "Новый Request создан с идентификатором {{ param }}",
-      "updated": "Request обновлен с идентификатором {{ param }}",
-      "deleted": "Request удален с идентификатором {{ param }}",
+      "created": "Новая Заявка создана с идентификатором {{ param }}",
+      "updated": "Заявка обновлена с идентификатором {{ param }}",
+      "deleted": "Заявка удалена с идентификатором {{ param }}",
       "delete": {
-        "question": "Вы уверены что хотите удалить Request {{ id }}?"
+        "question": "Вы уверены что хотите удалить Заявку {{ id }}?"
       },
       "detail": {
-        "title": "Request"
+        "title": "Заявка"
       },
       "addbutton": {
         "create": "Отправить заявку"
       },
-      "created": "Created",
-      "customer": "Customer",
-      "phone": "Phone",
-      "total": "Total",
-      "complete": "Complete",
-      "sales": "Sales",
-      "address": "Address",
-      "requestpoints": "Requestpoints"
+      "created": "Заявка отправлена",
+      "customer": "Имя клиента",
+      "phone": "Телефон",
+      "total": "Сумма",
+      "complete": "Статус",
+      "sales": "Скидка",
+      "address": "Адрес",
+      "requestpoints": "Пункты заявки"
     }
   }
 }

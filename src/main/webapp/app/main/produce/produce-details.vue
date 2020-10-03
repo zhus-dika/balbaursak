@@ -56,7 +56,7 @@
                         </dt>
                         <dd>
                             <div v-if="produce.category">
-                                {{produce.category.id}}
+                                {{produce.category.name}}
                             </div>
                         </dd>
                         <dt>
@@ -82,6 +82,10 @@
                     <button v-if="produce.id" tag="button" class="btn btn-primary">
                         <span> Добавить в корзину</span>
                     </button>
+                    <router-link :to="{name: 'ProduceFeedbacks', params: {produceId: produce.id}}" tag="button" class="btn btn-info details">
+                        <font-awesome-icon icon="eye"></font-awesome-icon>
+                        <span class="d-none d-md-inline" v-text="$t('balbaursakApp.feedback.home.title')">Feedbacks</span>
+                    </router-link>
                 </form>
             </div>
         </div>

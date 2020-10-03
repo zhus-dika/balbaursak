@@ -12,6 +12,9 @@ const Error = () => import('@/core/error/error.vue');
 const ProduceDetailsBucket = () => import('@/main/produce/produce-details.vue');
 const RequestSend = () => import('@/main/request/request-update.vue');
 const Bucket = () => import('@/main/request-points/requestpoint.vue');
+const ProduceFeedbacks = () => import('@/main/feedback/feedback.vue');
+const FeedbackCreateProduce = () => import('@/main/feedback/feedback-update.vue');
+
 import account from '@/router/account.ts';
 import admin from '@/router/admin.ts';
 import entities from '@/router/entities.ts';
@@ -33,6 +36,16 @@ export default new Router({
       path: '/bucket',
       name: 'Bucket',
       component: Bucket
+    },
+    {
+      path: '/feedback/produce',
+      name: 'FeedbackCreateProduce',
+      component: FeedbackCreateProduce
+    },
+    {
+      path: '/produce/:produceId/feedbacks',
+      name: 'ProduceFeedbacks',
+      component: ProduceFeedbacks
     },
     {
       path: '/request/send',

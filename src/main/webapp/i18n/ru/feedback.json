@@ -2,25 +2,25 @@
   "balbaursakApp": {
     "feedback": {
       "home": {
-        "title": "Feedbacks",
-        "createLabel": "Создать новый Feedback",
-        "createOrEditLabel": "Создать или отредактировать Feedback",
-        "notFound": "No Feedbacks found"
+        "title": "Отзывы",
+        "createLabel": "Создать новый Отзыв",
+        "createOrEditLabel": "Создать или отредактировать Отзыв",
+        "notFound": "Список отзывов пуст"
       },
-      "created": "Новый Feedback создан с идентификатором {{ param }}",
-      "updated": "Feedback обновлен с идентификатором {{ param }}",
-      "deleted": "Feedback удален с идентификатором {{ param }}",
+      "created": "Новый Отзыв создан с идентификатором {{ param }}",
+      "updated": "Отзыв обновлен с идентификатором {{ param }}",
+      "deleted": "Отзыв удален с идентификатором {{ param }}",
       "delete": {
-        "question": "Вы уверены что хотите удалить Feedback {{ id }}?"
+        "question": "Вы уверены что хотите удалить Отзыв {{ id }}?"
       },
       "detail": {
-        "title": "Feedback"
+        "title": "Отзыв"
       },
-      "created": "Created",
-      "customer": "Customer",
-      "vote": "Vote",
-      "content": "Content",
-      "produce": "Produce"
+      "created": "Создан",
+      "customer": "Имя клиента",
+      "vote": "Голос",
+      "content": "Контент",
+      "produce": "Изделие"
     }
   }
 }

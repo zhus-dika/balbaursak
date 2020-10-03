@@ -2,24 +2,24 @@
   "balbaursakApp": {
     "requestpoint": {
       "home": {
-        "title": "Requestpoints",
-        "createLabel": "Создать новый Requestpoint",
-        "createOrEditLabel": "Создать или отредактировать Requestpoint",
-        "notFound": "No Requestpoints found"
+        "title": "Пункты заявок",
+        "createLabel": "Создать новый пункт заявки",
+        "createOrEditLabel": "Создать или отредактировать пункт",
+        "notFound": "Список пунктов пуст"
       },
-      "created": "Новый Requestpoint создан с идентификатором {{ param }}",
-      "updated": "Requestpoint обновлен с идентификатором {{ param }}",
-      "deleted": "Requestpoint удален с идентификатором {{ param }}",
+      "created": "Новый пункт завки создан с идентификатором {{ param }}",
+      "updated": "Пункт завки обновлен с идентификатором {{ param }}",
+      "deleted": "Пункт завки удален с идентификатором {{ param }}",
       "delete": {
-        "question": "Вы уверены что хотите удалить Requestpoint {{ id }}?"
+        "question": "Вы уверены что хотите удалить Пункт завки {{ id }}?"
       },
       "detail": {
-        "title": "Requestpoint"
+        "title": "Пункт завки"
       },
-      "quantity": "Quantity",
-      "total": "Total",
-      "produce": "Produce",
-      "request": "Request"
+      "quantity": "Количество",
+      "total": "Итого",
+      "produce": "Изделие",
+      "request": "Заявка"
     }
   }
 }
