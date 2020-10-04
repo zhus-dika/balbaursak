@@ -19,23 +19,10 @@ export default class FeedbackService {
         });
     });
   }
-
-  public retrieve(paginationQuery?: any): Promise<any> {
-    return new Promise<any>((resolve, reject) => {
+  public retrieveByProduce(paginationQuery?: any): Promise<any> {
+    return new Promise<any>(function(resolve, reject) {
       axios
-        .get(baseApiUrl + `?${buildPaginationQueryOpts(paginationQuery)}`)
-        .then(res => {
-          resolve(res);
-        })
-        .catch(err => {
-          reject(err);
-        });
-    });
-  }
-  public retrieveByProduce(produceId: number, paginationQuery?: any): Promise<any> {
-    return new Promise<any>((resolve, reject) => {
-      axios
-        .get(baseApiUrl + '/produce' + `?${buildPaginationQueryOpts(paginationQuery)}&produceId=${produceId}`)
+        .get(baseApiUrl + `/produce/${paginationQuery.produceId}` + `?${buildPaginationQueryOpts(paginationQuery)}`)
         .then(res => {
           resolve(res);
         })

@@ -1,6 +1,7 @@
 package com.balbaursak.webapp.service;
 
 import com.balbaursak.webapp.domain.Feedback;
+import com.balbaursak.webapp.domain.Produce;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,6 +29,7 @@ public interface FeedbackService {
      */
     Page<Feedback> findAll(Pageable pageable);
 
+    Page<Feedback> findAllByProduce(Pageable pageable, Produce produce);
 
     /**
      * Get the "id" feedback.

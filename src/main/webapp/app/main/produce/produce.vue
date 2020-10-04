@@ -16,9 +16,9 @@
         </div>
         <div class="form-group">
             <label class="form-control-label" v-text="$t('balbaursakApp.produce.category')" for="category">Category</label>
-            <select class="form-control" id="category" name="category" v-model="category" required>
-                <option v-if="!category" v-bind:value="null" selected></option>
-                <option :value="category && categoryOption.id === category.id ? category : categoryOption" v-for="categoryOption in categories" :key="categoryOption.id">{{categoryOption.name}}</option>
+            <select class="form-control" id="category" name="category" v-model="selectedCategory" required>
+                <option :value="0" >All</option>
+                <option :value="categoryOption.id" v-for="categoryOption in categories" :key="categoryOption.id">{{categoryOption.name}}</option>
             </select>
         </div>
         <div class="table-responsive" v-if="filteredProduces && filteredProduces.length > 0">
@@ -30,7 +30,6 @@
                     <th v-on:click="changeOrder('unit')"><span v-text="$t('balbaursakApp.produce.unit')">Unit</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'unit'"></jhi-sort-indicator></th>
                     <th v-on:click="changeOrder('contains')"><span v-text="$t('balbaursakApp.produce.contains')">Contains</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'contains'"></jhi-sort-indicator></th>
                     <th v-on:click="changeOrder('days')"><span v-text="$t('balbaursakApp.produce.days')">Days</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'days'"></jhi-sort-indicator></th>
-                    <th v-on:click="changeOrder('description')"><span v-text="$t('balbaursakApp.produce.description')">Description</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'description'"></jhi-sort-indicator></th>
                     <th v-on:click="changeOrder('price')"><span v-text="$t('balbaursakApp.produce.price')">Price</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'price'"></jhi-sort-indicator></th>
                     <th v-on:click="changeOrder('file')"><span v-text="$t('balbaursakApp.produce.file')">File</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'file'"></jhi-sort-indicator></th>
                     <th v-on:click="changeOrder('category.id')"><span v-text="$t('balbaursakApp.produce.category')">Category</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'category.id'"></jhi-sort-indicator></th>
@@ -47,7 +46,6 @@
                     <td>{{produce.unit}}</td>
                     <td>{{produce.contains}}</td>
                     <td>{{produce.days}}</td>
-                    <td>{{produce.description}}</td>
                     <td>{{produce.price}}</td>
                     <td>
                         <a v-if="produce.file" v-on:click="openFile(produce.fileContentType, produce.file)">
@@ -81,7 +79,7 @@
                 <button type="button" class="btn btn-primary" id="jhi-confirm-delete-produce" v-text="$t('entity.action.delete')" v-on:click="removeProduce()">Delete</button>
             </div>
         </b-modal>
-        <div v-show="produces && produces.length > 0">
+        <div v-show="filteredProduces && filteredProduces.length > 0">
             <div class="row justify-content-center">
                 <jhi-item-count :page="page" :total="queryCount" :itemsPerPage="itemsPerPage"></jhi-item-count>
             </div>

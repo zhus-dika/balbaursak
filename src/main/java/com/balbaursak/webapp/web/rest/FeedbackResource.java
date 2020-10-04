@@ -1,7 +1,9 @@
 package com.balbaursak.webapp.web.rest;
 
 import com.balbaursak.webapp.domain.Feedback;
+import com.balbaursak.webapp.domain.Produce;
 import com.balbaursak.webapp.service.FeedbackService;
+import com.balbaursak.webapp.service.ProduceService;
 import com.balbaursak.webapp.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -39,9 +41,11 @@ public class FeedbackResource {
     private String applicationName;
 
     private final FeedbackService feedbackService;
+    private final ProduceService produceService;
 
-    public FeedbackResource(FeedbackService feedbackService) {
+    public FeedbackResource(FeedbackService feedbackService, ProduceService produceService) {
         this.feedbackService = feedbackService;
+        this.produceService = produceService;
     }
 
     /**
@@ -97,10 +101,11 @@ public class FeedbackResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
-    @GetMapping("/feedbacks/produce")
-    public ResponseEntity<List<Feedback>> getAllFeedbacks(Pageable pageable, Long produceId) {
-        log.debug("REST request to get a page of Feedbacks");
-        Page<Feedback> page = feedbackService.findAll(pageable);
+    @GetMapping("/feedbacks/produce/{produceId}")
+    public ResponseEntity<List<Feedback>> getAllFeedbacks(Pageable pageable, @PathVariable Long produceId) {
+        log.debug("REST request to get a page of Feedbacks of the Produce");
+        Produce produce = produceService.findOne(produceId).get();
+        Page<Feedback> page = feedbackService.findAllByProduce(pageable, produce);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

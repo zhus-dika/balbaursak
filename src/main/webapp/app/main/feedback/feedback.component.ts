@@ -5,13 +5,13 @@ import Vue2Filters from 'vue2-filters';
 import { IFeedback } from '@/shared/model/feedback.model';
 import AlertMixin from '@/shared/alert/alert.mixin';
 
-import FeedbackService from './feedback.service';
+import FeedbackService from '../feedback/feedback.service';
 
 @Component({
   mixins: [Vue2Filters.mixin],
 })
 export default class Feedback extends mixins(AlertMixin) {
-  @Inject('feedbackService') private feedbackService: () => FeedbackService;
+  @Inject('feedbackService') public feedbackService: () => FeedbackService;
   private removeId: number = null;
   public itemsPerPage = 20;
   public queryCount: number = null;
@@ -20,13 +20,14 @@ export default class Feedback extends mixins(AlertMixin) {
   public propOrder = 'id';
   public reverse = false;
   public totalItems = 0;
-  public param;
+  public param: number = null;
 
   public feedbacks: IFeedback[] = [];
   public isFetching = false;
-
+  public created() {
+    this.param = parseInt(this.$route.params.produceId, 10);
+  }
   public mounted(): void {
-    this.param = this.$route.params.produceId;
     this.retrieveAllFeedbacks();
   }
 
@@ -34,17 +35,17 @@ export default class Feedback extends mixins(AlertMixin) {
     this.page = 1;
     this.retrieveAllFeedbacks();
   }
-  get filteredFeedbacks(): IFeedback[] {
-    return this.feedbacks.filter(ele => ele.produce.id === this.param);
-  }
+
   public retrieveAllFeedbacks(): void {
     this.isFetching = true;
     const paginationQuery = {
       page: this.page - 1,
       size: this.itemsPerPage,
       sort: this.sort(),
+      produceId: this.param
     };
-    this.feedbackService().retrieve(paginationQuery)
+    this.feedbackService()
+      .retrieveByProduce(paginationQuery)
       .then(
         res => {
           this.feedbacks = res.data;
@@ -64,20 +65,6 @@ export default class Feedback extends mixins(AlertMixin) {
       (<any>this.$refs.removeEntity).show();
     }
   }
-
-  public removeFeedback(): void {
-    this.feedbackService()
-      .delete(this.removeId)
-      .then(() => {
-        const message = this.$t('balbaursakApp.feedback.deleted', { param: this.removeId });
-        this.alertService().showAlert(message, 'danger');
-        this.getAlertFromStore();
-        this.removeId = null;
-        this.retrieveAllFeedbacks();
-        this.closeDialog();
-      });
-  }
-
   public sort(): Array<any> {
     const result = [this.propOrder + ',' + (this.reverse ? 'asc' : 'desc')];
     if (this.propOrder !== 'id') {

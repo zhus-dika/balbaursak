@@ -17,10 +17,10 @@
             {{alertMessage}}
         </b-alert>
         <br/>
-        <div class="alert alert-warning" v-if="!isFetching && filteredFeedbacks && filteredFeedbacks.length === 0">
+        <div class="alert alert-warning" v-if="!isFetching && feedbacks && feedbacks.length === 0">
             <span v-text="$t('balbaursakApp.feedback.home.notFound')">No feedbacks found</span>
         </div>
-        <div class="table-responsive" v-if="filteredFeedbacks && filteredFeedbacks.length > 0">
+        <div class="table-responsive" v-if="feedbacks && feedbacks.length > 0">
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -34,7 +34,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="feedback in filteredFeedbacks"
+                <tr v-for="feedback in feedbacks"
                     :key="feedback.id">
                     <td>
                         <router-link :to="{name: 'FeedbackView', params: {feedbackId: feedback.id}}">{{feedback.id}}</router-link>
@@ -52,16 +52,6 @@
                 </tbody>
             </table>
         </div>
-        <b-modal ref="removeEntity" id="removeEntity" >
-            <span slot="modal-title"><span id="balbaursakApp.feedback.delete.question" v-text="$t('entity.delete.title')">Confirm delete operation</span></span>
-            <div class="modal-body">
-                <p id="jhi-delete-feedback-heading" v-text="$t('balbaursakApp.feedback.delete.question', {'id': removeId})">Are you sure you want to delete this Feedback?</p>
-            </div>
-            <div slot="modal-footer">
-                <button type="button" class="btn btn-secondary" v-text="$t('entity.action.cancel')" v-on:click="closeDialog()">Cancel</button>
-                <button type="button" class="btn btn-primary" id="jhi-confirm-delete-feedback" v-text="$t('entity.action.delete')" v-on:click="removeFeedback()">Delete</button>
-            </div>
-        </b-modal>
         <div v-show="feedbacks && feedbacks.length > 0">
             <div class="row justify-content-center">
                 <jhi-item-count :page="page" :total="queryCount" :itemsPerPage="itemsPerPage"></jhi-item-count>

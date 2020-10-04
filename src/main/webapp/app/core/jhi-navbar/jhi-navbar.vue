@@ -244,6 +244,6 @@
     filter: drop-shadow(0 0 0.05rem white);
 }
 .navbar {
-    background: black;
+    padding: 0.5rem 0rem !important;
 }
 </style>

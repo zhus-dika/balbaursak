@@ -23,6 +23,7 @@ export default class Produce extends mixins(JhiDataUtils, AlertMixin) {
   public page = 1;
   public previousPage = 1;
   public propOrder = 'id';
+  public selectedCategory = 0;
   public reverse = false;
   public totalItems = 0;
   public category: ICategory = new Category();
@@ -30,22 +31,19 @@ export default class Produce extends mixins(JhiDataUtils, AlertMixin) {
   public categories: ICategory[] = [];
 
   public isFetching = false;
-
-  public mounted(): void {
+  public mounted() {
     this.retrieveAllProduces();
     this.retrieveAllCategorys();
   }
-
   public clear(): void {
     this.page = 1;
     this.retrieveAllProduces();
   }
   get filteredProduces() {
-    return (this.category.id ===  undefined) ? this.produces : this.produces.filter(ele => ele.category.id === this.category.id);
+    return (this.selectedCategory ===  0) ? this.produces : this.produces.filter(ele => ele.category.id === this.selectedCategory);
   }
   public retrieveAllProduces(): void {
     this.isFetching = true;
-
     const paginationQuery = {
       page: this.page - 1,
       size: this.itemsPerPage,
