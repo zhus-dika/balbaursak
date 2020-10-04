@@ -18,7 +18,7 @@ export default class Produce extends mixins(JhiDataUtils, AlertMixin) {
   @Inject('produceService') private produceService: () => ProduceService;
   @Inject('categoryService') private categoryService: () => CategoryService;
   private removeId: number = null;
-  public itemsPerPage = 5;
+  public itemsPerPage = 10;
   public queryCount: number = null;
   public page = 1;
   public previousPage = 1;
@@ -68,7 +68,7 @@ export default class Produce extends mixins(JhiDataUtils, AlertMixin) {
 
     const paginationQuery = {
       page: this.page - 1,
-      size: this.itemsPerPage,
+      size: 10
       sort: this.sort(),
     };
     this.categoryService()
