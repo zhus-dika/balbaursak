@@ -17,7 +17,7 @@
         <div class="form-group">
             <label class="form-control-label" v-text="$t('balbaursakApp.produce.category')" for="category">Category</label>
             <select class="form-control" id="category" name="category" v-model="selectedCategory" required>
-                <option :value="0" >All</option>
+                <option :value="0" v-text="$t('balbaursakApp.produce.filter')">All</option>
                 <option :value="categoryOption.id" v-for="categoryOption in categories" :key="categoryOption.id">{{categoryOption.name}}</option>
             </select>
         </div>

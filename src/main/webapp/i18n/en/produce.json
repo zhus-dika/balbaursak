@@ -7,6 +7,7 @@
         "createOrEditLabel": "Create or edit a Produce",
         "notFound": "No Produces found"
       },
+      "filter": "All",
       "created": "A new Produce is created with identifier {{ param }}",
       "updated": "A Produce is updated with identifier {{ param }}",
       "deleted": "A Produce is deleted with identifier {{ param }}",

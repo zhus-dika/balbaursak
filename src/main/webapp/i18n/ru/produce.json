@@ -1,9 +1,10 @@
 {
   "balbaursakApp": {
     "produce": {
+      "filter": "Все",
       "home": {
         "title": "Изделия",
-        "createLabel": "Создать новый Изделие",
+        "createLabel": "Создать новое Изделие",
         "createOrEditLabel": "Создать или отредактировать Изделие",
         "notFound": "Список изделий пуст"
       },

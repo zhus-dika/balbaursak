@@ -68,7 +68,7 @@ export default class Produce extends mixins(JhiDataUtils, AlertMixin) {
 
     const paginationQuery = {
       page: this.page - 1,
-      size: 10
+      size: 10,
       sort: this.sort(),
     };
     this.categoryService()
