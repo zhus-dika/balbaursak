@@ -8,6 +8,8 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons/faArrowLeft';
 import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons/faCartArrowDown';
 import { faAsterisk } from '@fortawesome/free-solid-svg-icons/faAsterisk';
 import { faBan } from '@fortawesome/free-solid-svg-icons/faBan';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons/faPaperPlane';
+import { faListAlt } from '@fortawesome/free-solid-svg-icons/faListAlt';
 import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
 import { faBell } from '@fortawesome/free-solid-svg-icons/faBell';
 import { faBook } from '@fortawesome/free-solid-svg-icons/faBook';
@@ -115,6 +117,8 @@ export function initVueApp(vue) {
 
 export function initFortAwesome(vue) {
   library.add(
+    faPaperPlane,
+    faListAlt,
     faArrowLeft,
     faAsterisk,
     faCartArrowDown,

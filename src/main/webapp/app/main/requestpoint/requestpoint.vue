@@ -2,6 +2,12 @@
     <div>
         <h2 id="page-heading">
             <span v-text="$t('balbaursakApp.requestpoint.home.title')" id="requestpoint-heading">Requestpoints</span>
+            <router-link :to="{name: 'RequestpointCreate'}" tag="button" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-requestpoint">
+                <font-awesome-icon icon="plus"></font-awesome-icon>
+                <span  v-text="$t('balbaursakApp.requestpoint.home.createLabel')">
+                    Create a new Requestpoint
+                </span>
+            </router-link>
         </h2>
         <b-alert :show="dismissCountDown"
             dismissible
@@ -11,7 +17,7 @@
             {{alertMessage}}
         </b-alert>
         <br/>
-        <div class="alert alert-warning" v-if="requestpoints && requestpoints.length === 0">
+        <div class="alert alert-warning" v-if="!isFetching && requestpoints && requestpoints.length === 0">
             <span v-text="$t('balbaursakApp.requestpoint.home.notFound')">No requestpoints found</span>
         </div>
         <div class="table-responsive" v-if="requestpoints && requestpoints.length > 0">
@@ -22,6 +28,7 @@
                     <th v-on:click="changeOrder('quantity')"><span v-text="$t('balbaursakApp.requestpoint.quantity')">Quantity</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'quantity'"></jhi-sort-indicator></th>
                     <th v-on:click="changeOrder('total')"><span v-text="$t('balbaursakApp.requestpoint.total')">Total</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'total'"></jhi-sort-indicator></th>
                     <th v-on:click="changeOrder('produce.name')"><span v-text="$t('balbaursakApp.requestpoint.produce')">Produce</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'produce.name'"></jhi-sort-indicator></th>
+                    <th v-on:click="changeOrder('request.id')"><span v-text="$t('balbaursakApp.requestpoint.request')">Request</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'request.id'"></jhi-sort-indicator></th>
                     <th></th>
                 </tr>
                 </thead>
@@ -35,19 +42,28 @@
                     <td>{{requestpoint.total}}</td>
                     <td>
                         <div v-if="requestpoint.produce">
-                            {{requestpoint.produce.name}}
+                            <router-link :to="{name: 'ProduceView', params: {produceId: requestpoint.produce.id}}">{{requestpoint.produce.name}}</router-link>
+                        </div>
+                    </td>
+                    <td>
+                        <div v-if="requestpoint.request">
+                            <router-link :to="{name: 'RequestView', params: {requestId: requestpoint.request.id}}">{{requestpoint.request.id}}</router-link>
                         </div>
                     </td>
                     <td class="text-right">
                         <div class="btn-group">
-                            <router-link :to="{name: 'ProduceDetailsBucket', params: {produceId: requestpoint.produce.id, currentQuantity: requestpoint.quantity}}"  tag="button" class="btn btn-primary btn-sm edit">
+                            <router-link :to="{name: 'RequestpointView', params: {requestpointId: requestpoint.id}}" tag="button" class="btn btn-info btn-sm details">
+                                <font-awesome-icon icon="eye"></font-awesome-icon>
+                                <span class="d-none d-md-inline" v-text="$t('entity.action.view')">View</span>
+                            </router-link>
+                            <router-link :to="{name: 'RequestpointEdit', params: {requestpointId: requestpoint.id}}"  tag="button" class="btn btn-primary btn-sm edit">
                                 <font-awesome-icon icon="pencil-alt"></font-awesome-icon>
                                 <span class="d-none d-md-inline" v-text="$t('entity.action.edit')">Edit</span>
                             </router-link>
                             <b-button v-on:click="prepareRemove(requestpoint)"
-                                      variant="danger"
-                                      class="btn btn-sm"
-                                      v-b-modal.removeEntity>
+                                   variant="danger"
+                                   class="btn btn-sm"
+                                   v-b-modal.removeEntity>
                                 <font-awesome-icon icon="times"></font-awesome-icon>
                                 <span class="d-none d-md-inline" v-text="$t('entity.action.delete')">Delete</span>
                             </b-button>
@@ -67,15 +83,14 @@
                 <button type="button" class="btn btn-primary" id="jhi-confirm-delete-requestpoint" v-text="$t('entity.action.delete')" v-on:click="removeRequestpoint()">Delete</button>
             </div>
         </b-modal>
-        <button type="submit"
-                v-on:click.prevent="previousState()"
-                class="btn btn-info">
-            <font-awesome-icon icon="arrow-left"></font-awesome-icon>&nbsp;<span v-text="$t('entity.action.back')"> Back</span>
-        </button>
-        <router-link :to="{name: 'RequestSend'}" :disabled="requestpoints.length === 0" tag="button" class="btn btn-primary edit">
-            <font-awesome-icon icon="paper-plane"></font-awesome-icon>
-            <span class="d-none d-md-inline" v-text="$t('balbaursakApp.request.addbutton.create')">Send request</span>
-        </router-link>
+        <div v-show="requestpoints && requestpoints.length > 0">
+            <div class="row justify-content-center">
+                <jhi-item-count :page="page" :total="queryCount" :itemsPerPage="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <b-pagination size="md" :total-rows="totalItems" v-model="page" :per-page="itemsPerPage" :change="loadPage(page)"></b-pagination>
+            </div>
+        </div>
     </div>
 </template>
 

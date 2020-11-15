@@ -27,12 +27,9 @@
                 <tr>
                     <th v-on:click="changeOrder('id')"><span v-text="$t('global.field.id')">ID</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'id'"></jhi-sort-indicator></th>
                     <th v-on:click="changeOrder('name')"><span v-text="$t('balbaursakApp.produce.name')">Name</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'name'"></jhi-sort-indicator></th>
-                    <th v-on:click="changeOrder('unit')"><span v-text="$t('balbaursakApp.produce.unit')">Unit</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'unit'"></jhi-sort-indicator></th>
                     <th v-on:click="changeOrder('contains')"><span v-text="$t('balbaursakApp.produce.contains')">Contains</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'contains'"></jhi-sort-indicator></th>
-                    <th v-on:click="changeOrder('days')"><span v-text="$t('balbaursakApp.produce.days')">Days</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'days'"></jhi-sort-indicator></th>
                     <th v-on:click="changeOrder('price')"><span v-text="$t('balbaursakApp.produce.price')">Price</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'price'"></jhi-sort-indicator></th>
                     <th v-on:click="changeOrder('file')"><span v-text="$t('balbaursakApp.produce.file')">File</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'file'"></jhi-sort-indicator></th>
-                    <th v-on:click="changeOrder('category.id')"><span v-text="$t('balbaursakApp.produce.category')">Category</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'category.id'"></jhi-sort-indicator></th>
                     <th></th>
                 </tr>
                 </thead>
@@ -43,19 +40,12 @@
                         <router-link :to="{name: 'ProduceView', params: {produceId: produce.id}}">{{produce.id}}</router-link>
                     </td>
                     <td>{{produce.name}}</td>
-                    <td>{{produce.unit}}</td>
                     <td>{{produce.contains}}</td>
-                    <td>{{produce.days}}</td>
                     <td>{{produce.price}}</td>
                     <td>
                         <a v-if="produce.file" v-on:click="openFile(produce.fileContentType, produce.file)">
                             <img v-bind:src="'data:' + produce.fileContentType + ';base64,' + produce.file" style="max-height: 30px;" alt="produce image"/>
                         </a>
-                    </td>
-                    <td>
-                        <div v-if="produce.category">
-                            {{produce.category.name}}
-                        </div>
                     </td>
                     <td class="text-right">
                         <div class="btn-group">

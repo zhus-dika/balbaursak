@@ -55,6 +55,9 @@
                 <router-link v-if="request.id" :to="{name: 'RequestEdit', params: {requestId: request.id}}" tag="button" class="btn btn-primary">
                     <font-awesome-icon icon="pencil-alt"></font-awesome-icon>&nbsp;<span v-text="$t('entity.action.edit')"> Edit</span>
                 </router-link>
+                <router-link v-if="request.id" :to="{name: 'RequestGetPoints', params: {requestId: request.id}}" tag="button" class="btn btn-primary">
+                    <font-awesome-icon icon="list-alt"></font-awesome-icon>&nbsp;<span v-text="$t('balbaursakApp.request.requestpoints')"> Points</span>
+                </router-link>
             </div>
         </div>
     </div>

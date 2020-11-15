@@ -2,7 +2,7 @@
     <b-navbar toggleable="md" type="light" class="bg-light">
         <b-navbar-brand class="logo" b-link to="/">
             <span class="logo-img"></span>
-            <span v-text="$t('global.title')" class="navbar-title">balbaursak</span> <span class="navbar-version">v1.0.0</span>
+            <span v-text="$t('global.title')" class="navbar-title">balbaursak</span>
         </b-navbar-brand>
         <b-navbar-toggle
             right

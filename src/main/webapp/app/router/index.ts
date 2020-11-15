@@ -12,6 +12,7 @@ const Error = () => import('@/core/error/error.vue');
 const ProduceDetailsBucket = () => import('@/main/produce/produce-details.vue');
 const RequestSend = () => import('@/main/request/request-update.vue');
 const Bucket = () => import('@/main/request-points/requestpoint.vue');
+const Requestpoint = () => import('@/entities/requestpoint/requestpoint.vue');
 const ProduceFeedbacks = () => import('@/main/feedback/feedback.vue');
 const FeedbackCreateProduce = () => import('@/main/feedback/feedback-update.vue');
 
