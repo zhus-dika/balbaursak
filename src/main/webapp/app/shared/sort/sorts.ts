@@ -7,7 +7,7 @@ export default function buildPaginationQueryOpts(paginationQuery) {
       }
       sorts += 'sort=' + paginationQuery.sort[idx];
     }
-    return `${sorts}&page=${paginationQuery.page}&size=${paginationQuery.size}`;
+    return `id=${paginationQuery.id}&${sorts}&page=${paginationQuery.page}&size=${paginationQuery.size}`;
   }
   return '';
 }

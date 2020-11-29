@@ -1,7 +1,7 @@
 package com.balbaursak.webapp.service;
 
 import com.balbaursak.webapp.domain.Requestpoint;
-
+import com.balbaursak.webapp.domain.Request;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -28,7 +28,7 @@ public interface RequestpointService {
      */
     Page<Requestpoint> findAll(Pageable pageable);
 
-
+    Page<Requestpoint> findAllByRequest(Pageable pageable, Request request);
     /**
      * Get the "id" requestpoint.
      *

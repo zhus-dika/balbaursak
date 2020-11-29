@@ -27,9 +27,9 @@ const ProduceUpdate = () => import('@/entities/produce/produce-update.vue');
 // prettier-ignore
 const ProduceDetails = () => import('@/entities/produce/produce-details.vue');
 // prettier-ignore
-const Requestpoint = () => import('@/entities/requestpoint/requestpoint.vue');
+const RequestPoint = () => import('@/entities/requestpoint/requestpoint.vue');
 
-const RequestPoints = () => import('@/main/requestpoint/requestpoint.vue');
+const Requestpoint = () => import('@/main/requestpoint/requestpoint.vue');
 // prettier-ignore
 const RequestpointUpdate = () => import('@/entities/requestpoint/requestpoint-update.vue');
 // prettier-ignore
@@ -158,7 +158,7 @@ export default [
   {
     path: '/request/:requestId/points',
     name: 'RequestGetPoints',
-    component: RequestPoints,
+    component: Requestpoint,
     meta: { authorities: [Authority.USER] }
   },
   {

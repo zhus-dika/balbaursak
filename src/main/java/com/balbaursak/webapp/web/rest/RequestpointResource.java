@@ -2,6 +2,7 @@ package com.balbaursak.webapp.web.rest;
 
 import com.balbaursak.webapp.domain.Requestpoint;
 import com.balbaursak.webapp.service.RequestpointService;
+import com.balbaursak.webapp.service.RequestService;
 import com.balbaursak.webapp.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -40,8 +41,11 @@ public class RequestpointResource {
 
     private final RequestpointService requestpointService;
 
-    public RequestpointResource(RequestpointService requestpointService) {
+    private final RequestService requestService;
+
+    public RequestpointResource(RequestpointService requestpointService, RequestService requestService) {
         this.requestpointService = requestpointService;
+        this.requestService = requestService;
     }
 
     /**
@@ -97,6 +101,14 @@ public class RequestpointResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
+
+    @GetMapping("/requestpoints/points")
+        public ResponseEntity<List<Requestpoint>> getAllRequestpointsByRequest(@RequestParam Long id, Pageable pageable) {
+            log.debug("REST request to get a page of Requestpoints");
+            Page<Requestpoint> page = requestpointService.findAllByRequest(pageable, requestService.findOne(id).get());
+            HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+            return ResponseEntity.ok().headers(headers).body(page.getContent());
+        }
 
     /**
      * {@code GET  /requestpoints/:id} : get the "id" requestpoint.

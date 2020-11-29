@@ -2,6 +2,7 @@ package com.balbaursak.webapp.service.impl;
 
 import com.balbaursak.webapp.service.RequestpointService;
 import com.balbaursak.webapp.domain.Requestpoint;
+import com.balbaursak.webapp.domain.Request;
 import com.balbaursak.webapp.repository.RequestpointRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,6 +40,12 @@ public class RequestpointServiceImpl implements RequestpointService {
     public Page<Requestpoint> findAll(Pageable pageable) {
         log.debug("Request to get all Requestpoints");
         return requestpointRepository.findAll(pageable);
+    }
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Requestpoint> findAllByRequest(Pageable pageable, Request request) {
+        log.debug("Request to get all Requestpoints By Request");
+        return requestpointRepository.findAllByRequest(pageable, request);
     }
 
 

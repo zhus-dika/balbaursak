@@ -10,7 +10,7 @@ import RequestpointService from './requestpoint.service';
 @Component({
   mixins: [Vue2Filters.mixin],
 })
-export default class Requestpoint extends mixins(AlertMixin) {
+export default class RequestPoint extends mixins(AlertMixin) {
   @Inject('requestpointService') private requestpointService: () => RequestpointService;
   private removeId: number = null;
   public itemsPerPage = 20;
@@ -20,13 +20,13 @@ export default class Requestpoint extends mixins(AlertMixin) {
   public propOrder = 'id';
   public reverse = false;
   public totalItems = 0;
-  // public requestId = parseInt(this.$route.params.requestId, 10);
+  //public requestId = parseInt(this.$route.params.requestId, 10);
   public requestpoints: IRequestpoint[] = [];
 
   public isFetching = false;
 
   public mounted(): void {
-    this.retrieveAllRequestpoints();
+    this.retrieveAllRequestpointsByRequest();
   }
 
   public clear(): void {
@@ -39,7 +39,31 @@ export default class Requestpoint extends mixins(AlertMixin) {
     const paginationQuery = {
       page: this.page - 1,
       size: this.itemsPerPage,
-      sort: this.sort()
+      sort: this.sort(),
+      id: parseInt(this.$route.params.requestId, 10)
+    };
+    this.requestpointService()
+      .retrieve(paginationQuery)
+      .then(
+        res => {
+          this.requestpoints = res.data;
+          this.totalItems = Number(res.headers['x-total-count']);
+          this.queryCount = this.totalItems;
+          this.isFetching = false;
+        },
+        err => {
+          this.isFetching = false;
+        }
+      );
+  }
+
+  public retrieveAllRequestpointsByRequest(): void {
+    this.isFetching = true;
+    const paginationQuery = {
+      page: this.page - 1,
+      size: this.itemsPerPage,
+      sort: this.sort(),
+      id: parseInt(this.$route.params.requestId, 10)
     };
     this.requestpointService()
       .retrieveById(paginationQuery)
@@ -55,7 +79,6 @@ export default class Requestpoint extends mixins(AlertMixin) {
         }
       );
   }
-
   public prepareRemove(instance: IRequestpoint): void {
     this.removeId = instance.id;
     if (<any>this.$refs.removeEntity) {
